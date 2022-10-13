@@ -16,7 +16,7 @@ endpoint = ""
  
 computervision_client = ComputerVisionClient(endpoint, CognitiveServicesCredentials(subscription_key))
 def azure_ocr_api(image_url):
-        local_image_url = "Cheque083654.jpeg"
+        #local_image_url = "Cheque083654.jpeg"
         read_response = computervision_client.read_in_stream(open("./Images/" + image_url,'rb'),  raw=True)
         #read_response = computervision_client.read_in_stream(open(local_image_url,'rb'),  raw=True)
 

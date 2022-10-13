@@ -3,11 +3,10 @@ import cv2 as cv
 import os
 import m
 
-app = Flask(__name__)
 
 
 def break_image():
-   img=cv.imread("image.jpeg")
+   img=cv.imread("Cheque083654.jpeg")
    img=cv.cvtColor(img, cv.COLOR_BGR2GRAY)
    edged = cv.Canny(img, 50, 500)
    contours, hierarchy = cv.findContours(edged, 
@@ -46,21 +45,11 @@ def break_image():
    cv.imwrite(os.path.join(path , 'Amount.jpeg'),amt_box)
    Amount = m.azure_ocr_api("Amount.jpeg")
    
+   print("Enter of operation")
    
 
-@app.route("/im_size", methods=["POST"])
 def process_image():
-    file = request.files["image"]
-    print(file)
 
-    
-    # Read the image via file.stream
-    # img = Image.open(file.stream)
-    file.save(f'image.jpeg')
     break_image()
-    return Response(status=200)
-    # return jsonify({'msg': 'success'})
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+   
+process_image()
